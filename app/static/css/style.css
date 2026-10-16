@@ -1,0 +1,115 @@
+/* Custom Animations and Spaced Repetition Flashcard Styles */
+@keyframes flame-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(249, 115, 22, 0.6));
+  }
+  50% {
+    transform: scale(1.15) rotate(-3deg);
+    filter: drop-shadow(0 0 14px rgba(239, 68, 68, 0.8));
+  }
+}
+
+.flame-animated {
+  display: inline-block;
+  animation: flame-pulse 2s infinite ease-in-out;
+}
+
+/* 3D Flashcard Flip Mechanics */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* Floating XP pop effect */
+@keyframes float-up {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.2);
+  }
+}
+
+.xp-float {
+  position: absolute;
+  animation: float-up 1.2s ease-out forwards;
+  pointer-events: none;
+  font-weight: 800;
+  color: #10B981;
+}
+
+/* Skeleton loader shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Bounding box overlay for OCR layout blocks */
+.ocr-bbox {
+  position: absolute;
+  border: 2px dashed rgba(59, 130, 246, 0.7);
+  background-color: rgba(59, 130, 246, 0.12);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ocr-bbox:hover {
+  background-color: rgba(59, 130, 246, 0.28);
+  border-color: #3B82F6;
+  z-index: 10;
+}
